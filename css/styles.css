@@ -1,5 +1,106 @@
+
+h2 {
+  font-size: 2.4rem;
+  text-align: center;
+}
+
 .add-form {
   position: absolute;
   top: 10%;
-  right: 20%;
+  right: 15%;
+  display: grid;
+  text-align: center;
+  border: 1px solid #555;
+}
+
+.add-form h3 {
+  font-size: 1.7rem;
+}
+
+.add-form form {
+  max-width: 330px;
+  display: grid;
+  padding: 1rem;
+}
+
+.add-form form div {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  padding: 8px;
+}
+
+.add-form form .radio-buttons{
+  grid-template-columns: repeat(2, 1fr);
+  width: 100%;
+}
+
+.add-form button {
+  margin: 5px;
+  padding: 8px;
+  border-radius: .3rem;
+  outline: none;
+  border: 1px solid black;
+  color: #fff;
+  font-size: 1.2rem;
+}
+
+.btn-add {
+  background-color: green;
+}
+
+.btn-cancel {
+  background-color: red;
+}
+
+.btn:hover {
+  cursor: pointer;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  max-width: 45%;
+  padding-left: 15%;
+}
+
+.card {
+  border: 1px solid black;
+  padding: 1.5rem;
+  margin: 1rem;
+}
+
+@media (max-width: 1200px) {
+  .add-form{ 
+    right: 5%; top: 2%;
+  }
+
+  .container { 
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  form {
+    margin-top: 100px;
+  }
+}
+
+@media (max-width: 850px) {
+ 
+  .add-form { 
+    right: 5%; top: 2%; width: 100%;
+  }
+
+  .add-form form { 
+    width: 100%; margin: auto; 
+  }
+
+  .container { 
+    grid-template-columns: repeat(1, 1fr);
+    width: 100%;
+    margin-top: 400px;
+    }
+    
+  .add-form {
+    margin: 100px auto;
+    width: 90%; 
+  }
 }
