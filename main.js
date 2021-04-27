@@ -88,6 +88,7 @@ function displayBooks() {
     card.innerHTML += `<button class="btn-read">Mark ${
       book.hasBeenRead ? "Unread" : "Read"
     }</button>`;
+
     // Appended card to book container's end and increment book id counter
     bookContainer.append(card);
     bookId++;
@@ -107,20 +108,11 @@ addButton.addEventListener("click", (e) => {
   let pageCount = document.querySelector("input[name=pageCount]").value;
   let read = document.querySelector("input[name=read]").value;
 
-  console.log(
-    "Process adding of book entitled " +
-      title +
-      " by " +
-      author +
-      " that is " +
-      pageCount +
-      " pages long and " +
-      (read ? "has" : "has not") +
-      " been read."
-  );
-
-  let newBook = new Book(title, author, pageCount, read);
-  addBookToLibrary(newBook);
+  if (validateFormInput(title, author, pageCount, read)) {
+    let newBook = new Book(title, author, pageCount, read);
+    addBookToLibrary(newBook);
+    clearFormFields();
+  }
 });
 
 function addBookEventListeners() {
@@ -144,4 +136,19 @@ function addBookEventListeners() {
       displayBooks();
     });
   });
+}
+
+function validateFormInput(title, author, pageCount, read) {
+  if (title == "" || author == "" || pageCount == "") {
+    alert("invalid");
+    return false;
+  }
+
+  return true;
+}
+
+function clearFormFields() {
+  document.querySelector("input[name=title]").value = "";
+  document.querySelector("input[name=author]").value = "";
+  document.querySelector("input[name=pageCount]").value = "";
 }
