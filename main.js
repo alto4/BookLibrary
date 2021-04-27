@@ -99,8 +99,10 @@ function displayBooks() {
 }
 
 displayBooks();
-let addButton = document.querySelector(".btn-add");
+
 getBookCovers();
+let addButton = document.querySelector(".btn-add");
+
 addButton.addEventListener("click", (e) => {
   e.preventDefault();
   let title = document.querySelector("input[name=title]").value;
@@ -124,6 +126,8 @@ function addBookEventListeners() {
       alert("About to delete book with the id of " + id);
 
       removeBookFromLibrary(id);
+
+      getBookCovers();
     });
   });
 
@@ -134,6 +138,8 @@ function addBookEventListeners() {
       let id = e.target.parentElement.getAttribute("data-id");
       myLibrary[id].hasBeenRead = !myLibrary[id].hasBeenRead;
       displayBooks();
+
+      getBookCovers();
     });
   });
 }
@@ -170,11 +176,11 @@ async function getBookCovers() {
   let cards = [...document.querySelectorAll(".card")];
   cards.forEach((card) => getBookCover());
 
-  setTimeout(renderImages, 2000);
+  setTimeout(renderImages, 300);
 }
 
 function renderImages() {
-  for (let i = 0; i < coverImages.length; i++) {
+  for (let i = 0; i < myLibrary.length; i++) {
     let cardImage = document.querySelector(`[data-id="${i}"] > img`);
     cardImage.src = coverImages[i];
   }
