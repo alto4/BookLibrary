@@ -1,6 +1,6 @@
 // Library array - placeholder for future database/serialization
 let myLibrary = [];
-
+let coverImages = [];
 // Book constructor
 function Book(title, author, pageCount, hasBeenRead) {
   this.title = title;
@@ -75,6 +75,7 @@ function displayBooks() {
     card.setAttribute("data-id", bookId);
 
     card.innerHTML = `<h3>${book.title}</h3>
+                      <img src="" />
                       <p>By ${book.author}</p>
                       <p>Page Count: ${book.pageCount}
                       <p>Status: ${book.hasBeenRead ? "Read" : "Unread"}</p>`;
@@ -84,8 +85,8 @@ function displayBooks() {
                          <p>Editor: ${book.editor}</p>`;
     }
 
-    card.innerHTML += '<button class="btn-delete">Delete</button>';
-    card.innerHTML += `<button class="btn-read">Mark ${
+    card.innerHTML += '<button class="btn btn-delete">Delete</button>';
+    card.innerHTML += `<button class=" btn btn-read">Mark ${
       book.hasBeenRead ? "Unread" : "Read"
     }</button>`;
 
@@ -98,9 +99,8 @@ function displayBooks() {
 }
 
 displayBooks();
-
 let addButton = document.querySelector(".btn-add");
-
+getBookCovers();
 addButton.addEventListener("click", (e) => {
   e.preventDefault();
   let title = document.querySelector("input[name=title]").value;
@@ -151,4 +151,31 @@ function clearFormFields() {
   document.querySelector("input[name=title]").value = "";
   document.querySelector("input[name=author]").value = "";
   document.querySelector("input[name=pageCount]").value = "";
+}
+
+async function getBookCover() {
+  // SAMPLE: http://covers.openlibrary.org/b/isbn/9780679785897-M.jpg
+
+  let isbn = "1400079152";
+
+  let coverURL = await fetch(
+    `http://covers.openlibrary.org/b/isbn/${isbn}-M.jpg`
+  );
+  coverImages.push(coverURL.url);
+
+  let image = document.createElement("img");
+}
+
+async function getBookCovers() {
+  let cards = [...document.querySelectorAll(".card")];
+  cards.forEach((card) => getBookCover());
+
+  setTimeout(renderImages, 2000);
+}
+
+function renderImages() {
+  for (let i = 0; i < coverImages.length; i++) {
+    let cardImage = document.querySelector(`[data-id="${i}"] > img`);
+    cardImage.src = coverImages[i];
+  }
 }

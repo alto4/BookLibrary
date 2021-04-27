@@ -1,3 +1,11 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #191414;
+  color: #fff;
+}
 
 h2 {
   font-size: 2.4rem;
@@ -44,13 +52,17 @@ h2 {
   font-size: 1.2rem;
 }
 
-.btn-add {
-  background-color: green;
+.btn {
+  display: block;
+  width: 100%;
+  padding: 8px;
+  margin-top: 8px;
+  color: #fff;
+  border: 1px solid #000;
+  border-radius: .3rem;
+  background-color: #1db954;
 }
 
-.btn-cancel {
-  background-color: red;
-}
 
 .btn:hover {
   cursor: pointer;
@@ -59,14 +71,17 @@ h2 {
 .container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  max-width: 45%;
-  padding-left: 15%;
+  width: 60%;
+  padding-left: 5%;
 }
 
 .card {
-  border: 1px solid black;
+  border: 1px solid #1db954;
+  border-radius: 10px;
   padding: 1.5rem;
   margin: 1rem;
+  text-align: center;
+  
 }
 
 @media (max-width: 1200px) {
@@ -76,8 +91,9 @@ h2 {
 
   .container { 
     grid-template-columns: repeat(2, 1fr);
+    padding-left: 0;
   }
-
+    
   form {
     margin-top: 100px;
   }
