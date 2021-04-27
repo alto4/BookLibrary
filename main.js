@@ -114,6 +114,7 @@ addButton.addEventListener("click", (e) => {
     let newBook = new Book(title, author, pageCount, read);
     addBookToLibrary(newBook);
     clearFormFields();
+    getBookCovers();
   }
 });
 
@@ -173,6 +174,7 @@ async function getBookCover() {
 }
 
 async function getBookCovers() {
+  coverImages = [];
   let cards = [...document.querySelectorAll(".card")];
   cards.forEach((card) => getBookCover());
 
