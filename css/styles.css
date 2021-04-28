@@ -33,8 +33,19 @@ h2 {
 
 .add-form form div {
   display: grid;
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: 1fr 3fr;
   padding: 8px;
+}
+
+input[type="text"],
+input[type="number"] {
+  background: #000;
+  color: #fff;
+  outline: none;
+  border: 1px solid #000;
+  height: 30px;
+  border-radius: 1rem;
+  padding: 0 12px 
 }
 
 .add-form form .radio-buttons{
@@ -116,7 +127,7 @@ h2 {
   .container { 
     grid-template-columns: repeat(1, 1fr);
     width: 100%;
-    margin-top: 400px;
+    margin-top: 450px;
     }
     
   .add-form {

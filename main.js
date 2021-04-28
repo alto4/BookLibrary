@@ -2,11 +2,12 @@
 let myLibrary = [];
 let coverImages = [];
 // Book constructor
-function Book(title, author, pageCount, hasBeenRead) {
+function Book(title, author, pageCount, hasBeenRead, isbn) {
   this.title = title;
   this.author = author;
   this.pageCount = pageCount;
   this.hasBeenRead = hasBeenRead;
+  this.isbn = isbn;
 
   this.info = () => {
     return `${title} by ${author}\n${pageCount} pages\nStatus: ${
@@ -16,13 +17,22 @@ function Book(title, author, pageCount, hasBeenRead) {
 }
 
 // Music Book constructor
-function MusicBook(editor, instrument, title, author, pageCount, hasBeenRead) {
+function MusicBook(
+  editor,
+  instrument,
+  title,
+  author,
+  pageCount,
+  hasBeenRead,
+  isbn
+) {
   this.editor = editor;
   this.instrument = instrument;
   this.title = title;
   this.author = author;
   this.pageCount = pageCount;
   this.hasBeenRead = hasBeenRead;
+  this.isbn = isbn;
 }
 
 // Add a new book to library array
@@ -37,29 +47,34 @@ function removeBookFromLibrary(index) {
   displayBooks();
 }
 // Sample books
-let oddThomas = new Book("Odd Thomas", "Dean Koontz", 299, true);
+let oddThomas = new Book(
+  "Odd Thomas",
+  "Dean Koontz",
+  299,
+  true,
+  "9780553802498"
+);
+
 let fearAndLoathing = new Book(
   "Fear and Loathing in Las Vegas",
   "Hunter S. Thompson",
   233,
-  true
+  true,
+  "9780394464350"
 );
-let ofMiceAndMen = new Book("Of Mice and Men", "John Steinback", 98, true);
-let inferno = new Book("Inferno", "Dan Brown", 574, false);
-let bachLuteSuites = new MusicBook(
-  "Frank Koonce",
-  "Guitar",
-  "Bach Lute Suites for Solo Guitar",
-  "J.S. Bach",
-  197,
-  true
+let ofMiceAndMen = new Book(
+  "Of Mice and Men",
+  "John Steinback",
+  98,
+  true,
+  "9780140177398"
 );
+let inferno = new Book("Inferno", "Dan Brown", 574, false, "9781400079155");
+
 // Add sample books to array
 addBookToLibrary(oddThomas);
-addBookToLibrary(fearAndLoathing);
 addBookToLibrary(ofMiceAndMen);
 addBookToLibrary(inferno);
-addBookToLibrary(bachLuteSuites);
 
 // Render books in DOM and assign bookId to allow for removal
 function displayBooks() {
@@ -77,7 +92,8 @@ function displayBooks() {
     card.innerHTML = `<h3>${book.title}</h3>
                       <img src="" />
                       <p>By ${book.author}</p>
-                      <p>Page Count: ${book.pageCount}
+                      <p>Page Count: ${book.pageCount}</p>
+                      <p>ISBN #: ${book.isbn}</p>
                       <p>Status: ${book.hasBeenRead ? "Read" : "Unread"}</p>`;
 
     if (book.editor && book.instrument) {
@@ -108,10 +124,12 @@ addButton.addEventListener("click", (e) => {
   let title = document.querySelector("input[name=title]").value;
   let author = document.querySelector("input[name=author]").value;
   let pageCount = document.querySelector("input[name=pageCount]").value;
-  let read = document.querySelector("input[name=read]").value;
+  let isbn = document.querySelector("input[name=isbn]").value;
+  // Assume incoming books are unread
+  let read = false;
 
   if (validateFormInput(title, author, pageCount, read)) {
-    let newBook = new Book(title, author, pageCount, read);
+    let newBook = new Book(title, author, pageCount, read, isbn);
     addBookToLibrary(newBook);
     clearFormFields();
     getBookCovers();
@@ -160,10 +178,11 @@ function clearFormFields() {
   document.querySelector("input[name=pageCount]").value = "";
 }
 
-async function getBookCover() {
+async function getBookCover(index = 0) {
   // SAMPLE: http://covers.openlibrary.org/b/isbn/9780679785897-M.jpg
 
-  let isbn = "1400079152";
+  let isbn = myLibrary[index].isbn;
+  alert(isbn);
 
   let coverURL = await fetch(
     `http://covers.openlibrary.org/b/isbn/${isbn}-M.jpg`
@@ -176,9 +195,13 @@ async function getBookCover() {
 async function getBookCovers() {
   coverImages = [];
   let cards = [...document.querySelectorAll(".card")];
-  cards.forEach((card) => getBookCover());
+  cards.forEach;
 
-  setTimeout(renderImages, 300);
+  for (let index = 0; index < myLibrary.length; index++) {
+    getBookCover(index);
+  }
+
+  setTimeout(renderImages, 3000);
 }
 
 function renderImages() {
