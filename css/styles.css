@@ -21,6 +21,9 @@ h2 {
   margin: 2.5rem;
 }
 
+h2 i {
+  color: #1db954;
+}
 
 .btn:hover {
   cursor: pointer;
