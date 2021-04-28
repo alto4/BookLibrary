@@ -37,7 +37,7 @@ function MusicBook(
 
 // Add a new book to library array
 function addBookToLibrary(book) {
-  myLibrary.unshift(book);
+  myLibrary.push(book);
   displayBooks();
 }
 
@@ -72,8 +72,8 @@ let ofMiceAndMen = new Book(
 let inferno = new Book("Inferno", "Dan Brown", 574, false, "9781400079155");
 
 // Add sample books to array
-addBookToLibrary(oddThomas);
-addBookToLibrary(ofMiceAndMen);
+// addBookToLibrary(oddThomas);
+// addBookToLibrary(ofMiceAndMen);
 addBookToLibrary(inferno);
 
 // Render books in DOM and assign bookId to allow for removal
@@ -126,7 +126,7 @@ addButton.addEventListener("click", (e) => {
   let pageCount = document.querySelector("input[name=pageCount]").value;
   let isbn = document.querySelector("input[name=isbn]").value;
   // Assume incoming books are unread
-  let read = false;
+  let read = document.querySelector("input[value=yes]").checked ? true : false;
 
   if (validateFormInput(title, author, pageCount, read)) {
     let newBook = new Book(title, author, pageCount, read, isbn);
@@ -142,7 +142,6 @@ function addBookEventListeners() {
   deleteButtons.forEach((button) => {
     button.addEventListener("click", (e) => {
       let id = e.target.parentElement.getAttribute("data-id");
-      alert("About to delete book with the id of " + id);
 
       removeBookFromLibrary(id);
 
@@ -165,7 +164,6 @@ function addBookEventListeners() {
 
 function validateFormInput(title, author, pageCount, read) {
   if (title == "" || author == "" || pageCount == "") {
-    alert("invalid");
     return false;
   }
 
@@ -176,13 +174,13 @@ function clearFormFields() {
   document.querySelector("input[name=title]").value = "";
   document.querySelector("input[name=author]").value = "";
   document.querySelector("input[name=pageCount]").value = "";
+  document.querySelector("input[name=isbn]").value = "";
 }
 
 async function getBookCover(index = 0) {
   // SAMPLE: http://covers.openlibrary.org/b/isbn/9780679785897-M.jpg
 
   let isbn = myLibrary[index].isbn;
-  alert(isbn);
 
   let coverURL = await fetch(
     `http://covers.openlibrary.org/b/isbn/${isbn}-M.jpg`
