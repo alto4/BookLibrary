@@ -138,6 +138,7 @@ function addBookEventListeners() {
       displayBooks();
 
       getBookCovers();
+      localStorage.setItem("books", JSON.stringify(myLibrary));
     });
   });
 }

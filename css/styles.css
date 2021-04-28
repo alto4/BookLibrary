@@ -1,88 +1,24 @@
+/* Font Import */
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400&display=swap');
+
+/* Reset */
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
+/* Utility Styles */
 body {
   background-color: #191414;
   color: #fff;
+  font-family: 'Rubik', sans-serif;
 }
 
 h2 {
   font-size: 2.4rem;
   text-align: center;
-}
-
-.add-form {
-  position: absolute;
-  top: 20%;
-  right: 10%;
-  display: grid;
-  text-align: center;
-  border: 1px solid #555;
-}
-
-.add-form h3 {
-  font-size: 1.7rem;
-}
-
-.add-form form {
-  max-width: 400px;
-  display: grid;
-  padding: 1rem;
-}
-
-.add-form form div {
-  display: grid;
-  grid-template-columns: 1fr 3fr;
-  padding: 8px;
-}
-
-.add-form .validation-message {
-  color: #1db954;
-  font-size: 1.2rem;
-  padding: 2rem auto;
-}
-
-input[type="text"],
-input[type="number"] {
-  background: #000;
-  color: #fff;
-  outline: none;
-  border: 1px solid #000;
-  height: 30px;
-  border-radius: 1rem;
-  padding: 0 12px 
-}
-
- 
-.radio-buttons label {
-  margin: 0 2rem;
-}
-
-.add-form form .radio-buttons{
-  display: flex;
-  width: 100%;
-}
-
-.add-form button {
-  margin: 5px;
-  padding: 8px;
-  border-radius: .3rem;
-  outline: none;
-  border: 1px solid black;
-  color: #fff;
-  font-size: 1.2rem;
-}
-
-.btn {
-  display: block;
-  width: 100%;
-  padding: 8px;
-  margin-top: 8px;
-  color: #fff;
-  border: 1px solid #000;
-  border-radius: .3rem;
-  background-color: #1db954;
+  margin: 2.5rem;
 }
 
 
@@ -98,21 +34,104 @@ input[type="number"] {
 }
 
 .card {
-  border: 1px solid #1db954;
+  border: 3px solid #1db954;
   border-radius: 10px;
   padding: 1.5rem;
   margin: 1rem;
-  text-align: center;
-  
+  text-align: center;  
 }
 
+.card h3 {
+  height: 60px;
+  text-decoration: underline;
+  text-decoration-color: #1db954;
+  text-decoration-thickness: 2px;
+}
+
+.card p {
+  margin: .5rem;
+  font-size: 1rem;
+}
 .card img {
   width: 180px;
   height: 323px;
 }
-@media (max-width: 1200px) {
+
+.btn {
+  display: block;
+  width: 100%;
+  padding: 8px;
+  margin-top: 8px;
+  color: #fff;
+  border: 1px solid #000;
+  border-radius: .3rem;
+  background-color: #1db954;
+}
+
+/* Form Styles */
+.add-form {
+  position: absolute;
+  top: 25%;
+  right: 10%;
+  display: grid;
+  text-align: center;
+  border: 3px solid #555;
+  border-radius: 10px;
+  padding: 1rem
+}
+
+.add-form h3 {
+  font-size: 1.7rem;
+  margin: .5rem;
+}
+
+.add-form form {
+  width: 400px;
+  display: grid;
+  padding: 1rem;
+}
+
+.add-form form div {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  padding: 8px;
+}
+
+.add-form .validation-message {
+  color: #1db954;
+  font-size: 1.2rem;
+  padding: 2rem auto;
+  min-height: 30px;
+}
+
+input[type="text"],
+input[type="number"] {
+  background: #000;
+  color: #fff;
+  outline: none;
+  border: 1px solid #000;
+  height: 30px;
+  border-radius: 1rem;
+  padding: 0 12px 
+}
+ 
+.radio-buttons label {
+  margin: 0 2rem 0 1rem;
+}
+
+.add-form form .radio-buttons{
+  display: flex;
+  width: 100%;
+}
+
+.add-form button {
+   font-size: 1.2rem;
+}
+
+/* Media Queries */
+@media (max-width: 1450px) {
   .add-form{ 
-    right: 5%; top: 2%;
+    right: 5%; top: 17%;
   }
 
   .container { 
@@ -120,29 +139,45 @@ input[type="number"] {
     padding-left: 0;
   }
     
+  .add-form button {
+    max-width: 500px;
+    margin: .3rem auto;
+  }
+ 
   form {
     margin-top: 100px;
   }
 }
 
-@media (max-width: 850px) {
+/* Medium Desktop Styles */
+@media (max-width: 1200px) {
  
   .add-form { 
-    right: 5%; top: 2%; width: 100%;
+    right: 5%; 
+    top: 2%; 
   }
 
   .add-form form { 
-    width: 100%; margin: auto; 
+    width: 100%; 
+    margin: auto; 
   }
 
   .container { 
-    grid-template-columns: repeat(1, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     width: 95%;
     margin: 500px auto;
-    }
-    
+  }
+}
+
+/* Cell Phone Styles */
+@media (max-width: 550px) {
   .add-form {
     margin: 100px auto;
     width: 90%; 
+  }
+  .container { 
+    grid-template-columns: repeat(1, 1fr);
+    width: 95%;
+    margin: 550px auto;
   }
 }

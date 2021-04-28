@@ -4,11 +4,11 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Music Library</title>
+  <title>My Library</title>
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-  <h2>My Music Library</h2>
+  <h2>My Library</h2>
   <div class="container">    
   </div>
 
@@ -41,12 +41,14 @@
         </label>
         <input type="number" name="isbn" id="isbn">
       </div>
-      <div class="radio-buttons">
+      <div>
         <label for="read">Read:</label>
-        <input type="radio" name="read" value="yes">
-        <label for="yes">Yes</label>
-        <input type="radio" name="read" checked value="no">
-        <label for="no">No</label>
+        <div class="radio-buttons">
+          <input type="radio" name="read" value="yes">
+          <label for="yes">Yes</label>
+          <input type="radio" name="read" checked value="no">
+          <label for="no">No</label>
+        </div>
       </div>
       <button type="submit" class="btn btn-add">Add</button>
       <button type="reset" class="btn btn-cancel">Cancel</button>
