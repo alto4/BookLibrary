@@ -14,7 +14,7 @@ h2 {
 
 .add-form {
   position: absolute;
-  top: 10%;
+  top: 20%;
   right: 10%;
   display: grid;
   text-align: center;
@@ -35,6 +35,12 @@ h2 {
   display: grid;
   grid-template-columns: 1fr 3fr;
   padding: 8px;
+}
+
+.add-form .validation-message {
+  color: #1db954;
+  font-size: 1.2rem;
+  padding: 2rem auto;
 }
 
 input[type="text"],

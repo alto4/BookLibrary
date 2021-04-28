@@ -1,5 +1,12 @@
 // Library array - placeholder for future database/serialization
-let myLibrary = [];
+let myLibrary;
+
+if (localStorage.getItem("books")) {
+  myLibrary = JSON.parse(localStorage.getItem("books"));
+} else {
+  myLibrary = [];
+}
+
 let coverImages = [];
 // Book constructor
 function Book(title, author, pageCount, hasBeenRead, isbn) {
@@ -39,42 +46,15 @@ function MusicBook(
 function addBookToLibrary(book) {
   myLibrary.push(book);
   displayBooks();
+  localStorage.setItem("books", JSON.stringify(myLibrary));
 }
 
 // Remove book from the library array based on provided index
 function removeBookFromLibrary(index) {
   myLibrary.splice(index, 1);
   displayBooks();
+  localStorage.setItem("books", JSON.stringify(myLibrary));
 }
-// Sample books
-let oddThomas = new Book(
-  "Odd Thomas",
-  "Dean Koontz",
-  299,
-  true,
-  "9780553802498"
-);
-
-let fearAndLoathing = new Book(
-  "Fear and Loathing in Las Vegas",
-  "Hunter S. Thompson",
-  233,
-  true,
-  "9780394464350"
-);
-let ofMiceAndMen = new Book(
-  "Of Mice and Men",
-  "John Steinback",
-  98,
-  true,
-  "9780140177398"
-);
-let inferno = new Book("Inferno", "Dan Brown", 574, false, "9781400079155");
-
-// Add sample books to array
-// addBookToLibrary(oddThomas);
-// addBookToLibrary(ofMiceAndMen);
-addBookToLibrary(inferno);
 
 // Render books in DOM and assign bookId to allow for removal
 function displayBooks() {
@@ -163,7 +143,35 @@ function addBookEventListeners() {
 }
 
 function validateFormInput(title, author, pageCount, read) {
-  if (title == "" || author == "" || pageCount == "") {
+  if (title == "") {
+    document.querySelector(".validation-message").textContent =
+      "Please include the book title.";
+
+    setTimeout(() => {
+      document.querySelector(".validation-message").textContent = "";
+    }, 3500);
+
+    return false;
+  }
+
+  if (author == "") {
+    document.querySelector(".validation-message").textContent =
+      "Please include the author's name.";
+
+    setTimeout(() => {
+      document.querySelector(".validation-message").textContent = "";
+    }, 3500);
+
+    return false;
+  }
+
+  if (pageCount == "") {
+    document.querySelector(".validation-message").textContent =
+      "Please include the page count.";
+
+    setTimeout(() => {
+      document.querySelector(".validation-message").textContent = "";
+    }, 3500);
     return false;
   }
 
@@ -177,7 +185,7 @@ function clearFormFields() {
   document.querySelector("input[name=isbn]").value = "";
 }
 
-async function getBookCover(index = 0) {
+async function getBookCover(index) {
   // SAMPLE: http://covers.openlibrary.org/b/isbn/9780679785897-M.jpg
 
   let isbn = myLibrary[index].isbn;
