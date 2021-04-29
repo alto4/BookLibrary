@@ -153,11 +153,13 @@ input[type="number"] {
 }
 
 /* Medium Desktop Styles */
-@media (max-width: 1200px) {
+@media (max-width: 1300px) {
  
   .add-form { 
     right: 5%; 
     top: 2%; 
+    margin: 100px auto;
+    width: 90%; 
   }
 
   .add-form form { 
@@ -168,16 +170,13 @@ input[type="number"] {
   .container { 
     grid-template-columns: repeat(2, 1fr);
     width: 95%;
-    margin: 500px auto;
+    margin: 550px auto;
   }
 }
 
 /* Cell Phone Styles */
 @media (max-width: 550px) {
-  .add-form {
-    margin: 100px auto;
-    width: 90%; 
-  }
+ 
   .container { 
     grid-template-columns: repeat(1, 1fr);
     width: 95%;
