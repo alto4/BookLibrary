@@ -9,37 +9,20 @@ if (localStorage.getItem("books")) {
 
 let coverImages = [];
 // Book constructor
-function Book(title, author, pageCount, hasBeenRead, isbn) {
-  this.title = title;
-  this.author = author;
-  this.pageCount = pageCount;
-  this.hasBeenRead = hasBeenRead;
-  this.isbn = isbn;
+class Book {
+  constructor(title, author, pageCount, hasBeenRead, isbn) {
+    this.title = title;
+    this.author = author;
+    this.pageCount = pageCount;
+    this.hasBeenRead = hasBeenRead;
+    this.isbn = isbn;
+  }
 
-  this.info = () => {
-    return `${title} by ${author}\n${pageCount} pages\nStatus: ${
-      hasBeenRead ? "read" : "unread."
+  getInfo() {
+    return `${this.title} by ${this.author}\n${this.pageCount} pages\nStatus: ${
+      this.hasBeenRead ? "read" : "unread."
     }`;
-  };
-}
-
-// Music Book constructor
-function MusicBook(
-  editor,
-  instrument,
-  title,
-  author,
-  pageCount,
-  hasBeenRead,
-  isbn
-) {
-  this.editor = editor;
-  this.instrument = instrument;
-  this.title = title;
-  this.author = author;
-  this.pageCount = pageCount;
-  this.hasBeenRead = hasBeenRead;
-  this.isbn = isbn;
+  }
 }
 
 // Add a new book to library array
